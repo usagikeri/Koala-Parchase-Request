@@ -6,6 +6,7 @@
 ## Demo
 
 ```
+$python purchase_request.py
 Please input username >>UserID
 Please input Passsword >>Password
 Please input ISBN13 >>9784822284763
