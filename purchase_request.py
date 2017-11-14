@@ -11,7 +11,6 @@ kandai_name = input("Please input username >>")
 ldap_pass = getpass("Please input Passsword >>")
 isbn13 = input("Please input ISBN13 >>")
 
-isbn13 = "9784822284763"
 title = ""
 isbn = ""
 author = ""
