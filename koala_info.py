@@ -8,25 +8,35 @@ class Koala_info(Getinfo):
     def Koala_parse(self, info_json):
         info_dict = {}
         json_dict = json.loads(info_json)
-        Info = json_dict['items'][0]['volumeInfo']
+        try:
+            Info = json_dict['items'][0]['volumeInfo']
+        except KeyError:
+            return None
 
         if "title" in Info:
             info_dict["title"] = Info["title"]
         else:
-            return "Nodata"
-
-        if "industryIdentifiers" in Info:
-            info_dict["ISBN"] = Info["industryIdentifiers"][0]['identifier']
+            info_dict["title"] = ""
 
         if "authors" in Info:
             info_dict["author"] = Info["authors"][0]
+        else:
+            info_dict["author"] = ""
+
+        if "industryIdentifiers" in Info:
+            info_dict["ISBN"] = Info["industryIdentifiers"][0]['identifier']
+        else:
+            info_dict["ISBN"] = ""
 
         if "publisher" in Info:
             info_dict["publisher"] = Info["publisher"]
+        else:
+            info_dict["publisher"] = ""
 
         return info_dict
 
     def Koala_search(self, ISBN13):
+        ISBN13 = ISBN13.replace("-","")
         book_data = super().getBookInfo(str(ISBN13))
         book_list = self.Koala_parse(book_data)
 
@@ -35,4 +45,4 @@ class Koala_info(Getinfo):
 
 if __name__ == "__main__":
     k = Koala_info()
-    print(k.Koala_search("9784822284763"))
+    print(k.Koala_search("978-4822284763"))

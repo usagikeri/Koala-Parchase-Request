@@ -11,21 +11,21 @@ kandai_name = input("Please input username >>")
 ldap_pass = getpass("Please input Passsword >>")
 isbn13 = input("Please input ISBN13 >>")
 
-title = ""
-isbn = ""
-author = ""
-publisher = ""
-
 print("書籍データ取得中...")
 
 book_dict = Koala_info().Koala_search(isbn13)
-try:
+
+if book_dict is None:
+    print("書籍データを取得できませんでした．書籍データを入力してください．")
+    title = input("Please input Book-titile >>")
+    author = input("Please input Book-author >>")
+    isbn = input("Please input Book ISBN >>")
+    publisher = input("Please input Book-publisher >>")
+else:
     title = book_dict["title"]
     isbn = book_dict["ISBN"]
     author = book_dict["author"]
     publisher = book_dict["publisher"]
-except:
-    pass
 
 print("書籍データ取得完了")
 print("関大図書館ページにアクセス...")
