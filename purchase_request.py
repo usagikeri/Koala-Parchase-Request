@@ -35,11 +35,11 @@ url = "http://opac.lib.kansai-u.ac.jp/?page_id=13"
 driver.get(url)
 
 
-# ウィンドウサイズの固定
+# driverの初期設定（サイズ，待機時間，ページ読み込み待機時間，wait)
 driver.set_window_size(800, 800)
 driver.implicitly_wait(10)
 driver.set_page_load_timeout(30)
-wait = WebDriverWait(driver, 30)
+wait = webdriverwait(driver, 30)
 
 # 購入依頼の選択
 try:
