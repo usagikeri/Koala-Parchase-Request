@@ -45,6 +45,7 @@ class KoalaTools:
         except:
             print("ログインに失敗しました")
             self.driver.quit()
+            sys.exit()
 
     def get_loan_period(self,kandai_user,kandai_password):
         self.login_kandai(kandai_user,kandai_password)
@@ -115,8 +116,4 @@ class KoalaTools:
             return None
 
 if __name__ == "__main__":
-    k = KoalaTools()
-    kandai_name = input("Please input username >>")
-    kandai_pass = getpass("Please input Passsword >>")
-
-    k.get_loan_period(kandai_name,kandai_pass)
+    print("class file")
