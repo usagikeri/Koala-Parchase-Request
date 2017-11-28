@@ -1,4 +1,7 @@
+#!/usr/bin/env python
+
 from Koala_tools import KoalaTools
+from koala_search import koala_serarch
 from getpass import getpass
 import argparse
 
@@ -8,10 +11,14 @@ def input_info():
 
     return kandai_user, kandai_pass
 
-
-if __name__ == '__main__':
+def main():
     koala = KoalaTools()
     parser = argparse.ArgumentParser(allow_abbrev=True)
+
+    parser.add_argument("word",
+                        help="search word",
+                        action="store",
+                        nargs=None)
 
     parser.add_argument("-p",
                         "--purchase_request",
@@ -33,5 +40,8 @@ if __name__ == '__main__':
     elif arg.check_period:
         user,password = input_info()
         koala.get_loan_period(user,password)
-    else:
-        print("argument error")
+    elif arg.word:
+        koala_serarch(arg.word)
+
+if __name__ == '__main__':
+    main()
