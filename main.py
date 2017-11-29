@@ -15,16 +15,17 @@ def input_info():
 def main():
     parser = argparse.ArgumentParser(allow_abbrev=True)
 
-    parser.add_argument("search_word",
+    parser.add_argument("-s","--search_word",
                         help="search word",
                         action="store",
-                        nargs=None)
+                        nargs=1
+                        )
 
     parser.add_argument("-p",
                         "--purchase_request",
                         help="purchase_request",
                         action="store",
-                        nargs="+")
+                        nargs=1)
 
     parser.add_argument("-c",
                         "--check_period",
@@ -41,8 +42,8 @@ def main():
         koala.purchase_request(user,password,isbn)
     elif arg.check_period:
         user,password = input_info()
-        koala = KoalaTools()
 
+        koala = KoalaTools()
         koala.get_loan_period(user,password)
     elif arg.search_word:
         koala_serarch(arg.search_word)
