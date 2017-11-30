@@ -18,7 +18,6 @@ def main():
     parser.add_argument("-s","--search_word",
                         help="search word",
                         action="store",
-                        nargs=1
                         )
 
     parser.add_argument("-p",
@@ -47,6 +46,7 @@ def main():
         koala.get_loan_period(user,password)
     elif arg.search_word:
         koala_serarch(arg.search_word)
+
     else:
         print("Error")
         sys.exit()

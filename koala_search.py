@@ -15,7 +15,7 @@ def koala_serarch(searchWord):
                      "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36",
                      "Content-type":"application/x-www-form-urlencoded; charset=UTF-8",
                      "DNT":"1",
-                     "Referer":"http://opac.lib.kansai-u.ac.jp/index.php?action=pages_view_main&active_action=v3search_view_main_init&block_id=52175&tab_num=0",
+                     "Referer":"http://opac.lib.kansai-u.ac.jp/index.php?action=pages_view_main&active_action=v3search_view_main_init&block_id=52175&tab_num=0&op_param=words%3Djava",
                      "Accept-Encoding":"gzip, deflate",
                      "Accept-Language":"ja,en-US;q=0.8,en;q=0.6"
                     }
@@ -40,7 +40,8 @@ def koala_serarch(searchWord):
         except :
             pass
 
+
 if __name__ == "__main__":
     args = sys.argv
-    word = args[0]
-    Koala(word)
+    word = args[1]
+    koala_serarch(word)
