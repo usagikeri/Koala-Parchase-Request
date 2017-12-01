@@ -48,9 +48,8 @@ def main():
         koala_serarch(arg.search_word)
 
     else:
-        print("Error")
+        parser.print_help()
         sys.exit()
-
 
 if __name__ == '__main__':
     main()
