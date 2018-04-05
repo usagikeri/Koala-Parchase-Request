@@ -36,8 +36,8 @@ class Koala_info(Getinfo):
         return info_dict
 
     def Koala_search(self, ISBN13):
-        ISBN13 = ISBN13.replace("-","")
-        book_data = super().getBookInfo(str(ISBN13))
+        ISBN13 = str(ISBN13).replace("-","")
+        book_data = super().getBookInfo(ISBN13)
         book_list = self.Koala_parse(book_data)
 
         return book_list

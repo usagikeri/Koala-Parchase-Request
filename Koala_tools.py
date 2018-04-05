@@ -12,7 +12,10 @@ import re
 
 class KoalaTools:
     def __init__(self):
-        self.driver = webdriver.PhantomJS(executable_path="/usr/local/bin/phantomjs")
+        # log setting
+        self.log_path = '$HOME'
+
+        self.driver = webdriver.PhantomJS(executable_path="/usr/local/bin/phantomjs", service_log_path = self.log_path)
         self.url = "http://opac.lib.kansai-u.ac.jp/?page_id=13"
         self.driver.get(self.url)
         # driverの初期設定（サイズ，待機時間，ページ読み込み待機時間，wait)
@@ -20,6 +23,8 @@ class KoalaTools:
         self.driver.implicitly_wait(10)
         self.driver.set_page_load_timeout(30)
         self.wait = WebDriverWait(self.driver, 30)
+
+        
 
         self.re_yes = re.compile("Yes|YES|yes|はい")
         self.re_no = re.compile("No|NO|no|いいえ")
@@ -170,7 +175,7 @@ class KoalaTools:
         # radio buttonの選択．配架希望館を高槻にしている．if文で分ける...予定
         while True:
             choice = input("高槻キャンパスで予約しますか（Yes/No）")
-            if self.re_yes.fullmatch(choice ) is not None:
+            if self.re_yes.fullmatch(choice) is not None:
                 self.driver.find_element_by_class_name("value").find_element_by_xpath("/html/body/div/div/table/tbody/tr/td/table/tbody/tr[4]/td/form[1]/table/tbody/tr[26]/td[2]/div/input[1]").click()
                 choice = "はい"
 
@@ -180,15 +185,14 @@ class KoalaTools:
         
             else:
                 print("YesかNoを入力してください")
-                pass
-
-
         
         #  受取希望館の選択 （高槻キャンパスに設定）
         place = self.driver.find_element_by_name("hopar")
         Select(place).select_by_index(2)
         
         print("書籍データの入力完了")
+
+        self.driver.save_screenshot("a.png")
         
         print("""
         Title:{0}
